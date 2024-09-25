@@ -90,6 +90,11 @@ HRESULT InitD3D(HWND hWnd)
         MessageBox(NULL, "XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩ", NULL, MB_OK);
         return E_FAIL;
     }
+
+    DWORD* wordBuffer { static_cast<DWORD*>(pD3DXMtrlBuffer->GetBufferPointer()) };
+
+    D3DXComputeNormals(pMesh, wordBuffer);
+
     d3dxMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
     pMaterials = new D3DMATERIAL9[dwNumMaterials];
     pTextures = new LPDIRECT3DTEXTURE9[dwNumMaterials];
